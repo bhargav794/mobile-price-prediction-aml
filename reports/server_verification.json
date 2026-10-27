@@ -1,0 +1,9 @@
+{
+  "health_status": 200,
+  "health_body": "ok",
+  "page_status": 200,
+  "started_from_other_working_directory": true,
+  "startup_seconds": 1.015,
+  "server_stopped_after_check": true,
+  "public_deployment": false
+}

@@ -1,0 +1,123 @@
+{
+  "selected_model": "Logistic Regression",
+  "selected_parameters": {
+    "model__C": 100.0,
+    "features__add_areas": false
+  },
+  "selection_metric": "development CV macro-F1",
+  "cv_folds": 5,
+  "cv_macro_f1": 0.9611883708027072,
+  "cv_macro_f1_std": 0.012725975329941594,
+  "cv_accuracy": 0.96125,
+  "holdout_rows": 400,
+  "development_rows": 1600,
+  "final_training_rows": 2000,
+  "class_support": {
+    "0": 100,
+    "1": 100,
+    "2": 100,
+    "3": 100
+  },
+  "holdout_metrics": {
+    "accuracy": 0.98,
+    "macro_precision": 0.9801960784313726,
+    "macro_recall": 0.98,
+    "macro_f1": 0.9800490049004902,
+    "weighted_precision": 0.9801960784313725,
+    "weighted_recall": 0.98,
+    "weighted_f1": 0.9800490049004901
+  },
+  "accuracy_wilson_95": [
+    0.9610361296222221,
+    0.9898317354020845
+  ],
+  "confusion_matrix": [
+    [
+      98,
+      2,
+      0,
+      0
+    ],
+    [
+      0,
+      98,
+      2,
+      0
+    ],
+    [
+      0,
+      2,
+      97,
+      1
+    ],
+    [
+      0,
+      0,
+      1,
+      99
+    ]
+  ],
+  "probability_diagnostics": {
+    "log_loss": 0.04619640960260075,
+    "multiclass_Brier_sum": 0.02708791807995346,
+    "mean_max_probability": 0.9715703309339184,
+    "predict_vs_proba_argmax_disagreements": 0
+  },
+  "top_drivers": [
+    "ram",
+    "battery_power",
+    "px_height"
+  ],
+  "classification_report": {
+    "0 \u00b7 Low": {
+      "precision": 1.0,
+      "recall": 0.98,
+      "f1-score": 0.98989898989899,
+      "support": 100.0
+    },
+    "1 \u00b7 Medium": {
+      "precision": 0.9607843137254902,
+      "recall": 0.98,
+      "f1-score": 0.9702970297029703,
+      "support": 100.0
+    },
+    "2 \u00b7 High": {
+      "precision": 0.97,
+      "recall": 0.97,
+      "f1-score": 0.97,
+      "support": 100.0
+    },
+    "3 \u00b7 Very high": {
+      "precision": 0.99,
+      "recall": 0.99,
+      "f1-score": 0.99,
+      "support": 100.0
+    },
+    "accuracy": 0.98,
+    "macro avg": {
+      "precision": 0.9801960784313726,
+      "recall": 0.98,
+      "f1-score": 0.9800490049004902,
+      "support": 400.0
+    },
+    "weighted avg": {
+      "precision": 0.9801960784313725,
+      "recall": 0.98,
+      "f1-score": 0.9800490049004901,
+      "support": 400.0
+    }
+  },
+  "methodology": {
+    "seed": 42,
+    "folds": 5,
+    "development_rows": 1600,
+    "selection": "Maximum development CV macro-F1; accuracy breaks exact ties.",
+    "area_minimum_macro_f1_gain": 0.002,
+    "area_ablation": "Two zero-safe areas compared jointly; tuned original-feature hyperparameters fixed.",
+    "uncertainty": "Fold standard deviations describe variability, not confidence intervals.",
+    "selection_bias": "Non-nested CV guides selection; the untouched holdout estimates generalization.",
+    "balancing": "Balanced Logistic Regression and RandomOverSampler are training-fold-only controls, not final-model retuning.",
+    "svm_probabilities": "Sigmoid CalibratedClassifierCV uses five internal stratified folds with the complete preprocessing/SVC pipeline; ensemble=False refits one estimator on available training rows.",
+    "deployment": "Returned models are fitted on development rows only; evaluate once before full-data refit."
+  }
+}

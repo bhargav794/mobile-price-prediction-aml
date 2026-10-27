@@ -1,0 +1,186 @@
+{
+  "feature_order": [
+    "battery_power",
+    "blue",
+    "clock_speed",
+    "dual_sim",
+    "fc",
+    "four_g",
+    "int_memory",
+    "m_dep",
+    "mobile_wt",
+    "n_cores",
+    "pc",
+    "px_height",
+    "px_width",
+    "ram",
+    "sc_h",
+    "sc_w",
+    "talk_time",
+    "three_g",
+    "touch_screen",
+    "wifi"
+  ],
+  "features": {
+    "battery_power": {
+      "dtype": "int",
+      "min": 501,
+      "max": 1998,
+      "default": 1226
+    },
+    "blue": {
+      "dtype": "category",
+      "categories": [
+        "No",
+        "Yes"
+      ],
+      "default": "No"
+    },
+    "clock_speed": {
+      "dtype": "float",
+      "min": 0.5,
+      "max": 3.0,
+      "default": 1.5
+    },
+    "dual_sim": {
+      "dtype": "category",
+      "categories": [
+        "No",
+        "Yes"
+      ],
+      "default": "Yes"
+    },
+    "fc": {
+      "dtype": "int",
+      "min": 0,
+      "max": 19,
+      "default": 3
+    },
+    "four_g": {
+      "dtype": "int",
+      "min": 0,
+      "max": 1,
+      "default": 1
+    },
+    "int_memory": {
+      "dtype": "int",
+      "min": 2,
+      "max": 64,
+      "default": 32
+    },
+    "m_dep": {
+      "dtype": "float",
+      "min": 0.1,
+      "max": 1.0,
+      "default": 0.5
+    },
+    "mobile_wt": {
+      "dtype": "category",
+      "categories": [
+        "Low",
+        "Med",
+        "High"
+      ],
+      "default": "Med"
+    },
+    "n_cores": {
+      "dtype": "int",
+      "min": 1,
+      "max": 8,
+      "default": 4
+    },
+    "pc": {
+      "dtype": "int",
+      "min": 0,
+      "max": 20,
+      "default": 10
+    },
+    "px_height": {
+      "dtype": "int",
+      "min": 0,
+      "max": 1960,
+      "default": 564
+    },
+    "px_width": {
+      "dtype": "int",
+      "min": 500,
+      "max": 1998,
+      "default": 1247
+    },
+    "ram": {
+      "dtype": "int",
+      "min": 256,
+      "max": 3998,
+      "default": 2146
+    },
+    "sc_h": {
+      "dtype": "int",
+      "min": 5,
+      "max": 19,
+      "default": 12
+    },
+    "sc_w": {
+      "dtype": "int",
+      "min": 0,
+      "max": 18,
+      "default": 5
+    },
+    "talk_time": {
+      "dtype": "int",
+      "min": 2,
+      "max": 20,
+      "default": 11
+    },
+    "three_g": {
+      "dtype": "int",
+      "min": 0,
+      "max": 1,
+      "default": 1
+    },
+    "touch_screen": {
+      "dtype": "category",
+      "categories": [
+        "No",
+        "Yes"
+      ],
+      "default": "Yes"
+    },
+    "wifi": {
+      "dtype": "category",
+      "categories": [
+        "No",
+        "Yes"
+      ],
+      "default": "Yes"
+    }
+  },
+  "class_labels": {
+    "0": "Low",
+    "1": "Medium",
+    "2": "High",
+    "3": "Very high"
+  },
+  "seed": 42,
+  "trained_rows": 2000,
+  "model_name": "Logistic Regression",
+  "cv_macro_f1": 0.9611883708027072,
+  "holdout_accuracy": 0.98,
+  "holdout_macro_f1": 0.9800490049004902,
+  "model_versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "matplotlib": "3.11.2",
+    "seaborn": "0.13.2",
+    "scikit-learn": "1.9.1",
+    "imbalanced-learn": "0.14.2",
+    "joblib": "1.6.0",
+    "streamlit": "1.66.1",
+    "nbformat": "5.11.1",
+    "nbclient": "0.11.0",
+    "nbconvert": "7.17.2",
+    "ipykernel": "7.4.0",
+    "pytest": "9.1.1"
+  },
+  "metric_training_rows": 1600,
+  "holdout_rows": 400
+}

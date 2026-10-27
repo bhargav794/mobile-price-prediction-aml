@@ -1,0 +1,6 @@
+{
+  "pytest_returncode": 0,
+  "pytest_summary": "\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m                                                 [100%]\u001b[0m\n\u001b[32m\u001b[32m\u001b[1m15 passed\u001b[0m, \u001b[32m\u001b[1m9 subtests passed\u001b[0m\u001b[32m in 2.24s\u001b[0m\u001b[0m",
+  "local_app_tested": true,
+  "public_deployment_verified": false
+}

@@ -1,0 +1,7 @@
+model,grid_candidates,search_cv_fits,best_parameters,area_ablation_cv_fits,retained_area_features
+Dummy,1,5,{},0,False
+Logistic Regression,4,20,"{""model__C"": 100.0}",5,False
+Decision Tree,6,30,"{""model__max_depth"": 8, ""model__min_samples_leaf"": 5}",0,False
+Random Forest,8,40,"{""model__max_depth"": 12, ""model__max_features"": 0.7, ""model__min_samples_leaf"": 1}",0,False
+SVM (RBF),9,45,"{""model__estimator__model__C"": 10.0, ""model__estimator__model__gamma"": 0.01}",5,False
+Soft Voting,2,10,"{""model__weights"": [1, 1, 1]}",0,False

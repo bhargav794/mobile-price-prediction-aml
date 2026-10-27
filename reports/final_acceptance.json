@@ -1,0 +1,27 @@
+{
+  "submission_files": {
+    "GROUP_NO.ipynb": {
+      "bytes": 1931192,
+      "sha256": "a25fbad271b2c85115f19e0cee3b5a9b4cf7dd2494195e9fc82b96a7732d223c"
+    },
+    "GROUP_NO.html": {
+      "bytes": 2296862,
+      "sha256": "6d0038c051dfdfdf704b319117e5c79d26fbc3d612fc13090454e15b12903d6f"
+    }
+  },
+  "executed_cells": 25,
+  "sections": 9,
+  "warning_outputs": 0,
+  "error_outputs": 0,
+  "all_embedded_sources_match": true,
+  "all_notebook_png_outputs_in_html": true,
+  "html_offline_assets": true,
+  "input_hashes_match": true,
+  "holdout_accuracy": 0.98,
+  "holdout_macro_f1": 0.9800490049004902,
+  "remaining_student_actions": [
+    "Replace requested group/member/student-ID placeholders and regenerate matching export",
+    "Upload only the two unzipped submission files",
+    "Authorize/publish in own Streamlit account only if public hosting desired or requested by examiner"
+  ]
+}

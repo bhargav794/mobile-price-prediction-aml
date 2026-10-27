@@ -1,0 +1,5 @@
+model,feature_variant,cv_macro_f1,cv_macro_f1_std,cv_accuracy,delta_macro_f1_vs_original,retained
+Logistic Regression,Original features,0.9611883708027072,0.012725975329941594,0.96125,0.0,True
+Logistic Regression,Original + pixel_area + screen_area,0.9618270956791054,0.01241506339263512,0.961875,0.0006387248763981557,False
+SVM (RBF),Original features,0.9155715786765157,0.017165580233761687,0.915625,0.0,True
+SVM (RBF),Original + pixel_area + screen_area,0.9111445241351681,0.022840729536850634,0.9112500000000001,-0.004427054541347619,False

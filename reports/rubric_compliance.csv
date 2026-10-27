@@ -1,0 +1,10 @@
+Rubric component,Marks,Location / evidence,Verification
+1. Import Libraries / Dataset,1,"§1 imports, real CSV preview, versions/hashes",Executed
+2. Data and Data Models,1,"§2 shapes/schema, exactly two full sanity rows, split",Executed
+3. Visualization and Exploration,5,"§3 consolidated grids, balance, statistics, bivariate/heatmap, MI",Executed
+4. Pre-processing and Cleaning,5,§4 audits/encoding/scaling rationale; §5 balancing/area comparisons; §6 importance,Executed
+5. Model Building,5,§5 DT/RF/RBF-SVM/soft voting + baselines; dev-only CV/tuning,Executed
+6. Performance Evaluation,2,"§6 labeled holdout accuracy, class reports, confusion matrices, fit analysis",Executed
+7. Model Deployment,4,"§7 full pipeline persistence, full app source, AppTest and batch checks",Local verified; public hosting pending
+8. Novelty and Innovation,2,"§8 actual what-if, batch, ablation, probability/importance evidence",Executed / tested
+9. Presentation and Viva,5,"§9 executive brief, 12 Q&As, timed demo, limitations",Present; genuine identities required
