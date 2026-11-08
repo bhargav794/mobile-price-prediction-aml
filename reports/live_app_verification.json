@@ -1,0 +1,21 @@
+{
+  "url": "https://mobile-price-prediction-aml.streamlit.app/",
+  "http_status": 200,
+  "health_status": 200,
+  "health_body_is_ok": false,
+  "health_response_preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width,initial-scale=1,shrink-to-fit=no,user-scala",
+  "session_finished": false,
+  "rendered_text_verified": false,
+  "session_verification_limitation": "InvalidHeader: missing Sec-WebSocket-Accept header",
+  "new_text_found": {
+    "Model and evaluation": null,
+    "Assumptions used": null,
+    "p_0, p_1, p_2 and p_3": null
+  },
+  "removed_text_absent": {
+    "Its provenance": null,
+    "This is a predictive association, not a causal experiment": null,
+    "Probability estimates are not a promise of correctness": null
+  },
+  "session_message_count": 0
+}
