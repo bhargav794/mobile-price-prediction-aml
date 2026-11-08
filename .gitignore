@@ -10,5 +10,8 @@ artifacts/development_models.joblib
 reports/figures/
 reports/notebook_preview.png
 reports/server_smoke.log
+reports/revision_backups/
+tmp/
+output/html/*.print.html
 
 

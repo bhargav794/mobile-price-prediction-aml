@@ -123,7 +123,7 @@ class StreamlitInteractionTests(unittest.TestCase):
         self.assertEqual(len(probe.exception), 0, str(probe.exception))
         self.assertEqual(len(probe.error), 1)
         self.assertIn("Missing model.joblib", probe.error[0].value)
-        self.assertIn("Run the submission notebook", probe.info[0].value)
+        self.assertIn("Restart the application", probe.info[0].value)
 
 
 if __name__ == "__main__":

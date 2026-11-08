@@ -150,7 +150,7 @@ def render_result(result: pd.DataFrame, schema: dict, *, prefix: str = "Predicte
     if not probabilities.empty:
         st.bar_chart(probabilities, color="#14b8a6", horizontal=True, height=225)
         st.dataframe(probabilities.style.format("{:.1%}"), width="stretch")
-        st.caption("These are model probability estimates, not guaranteed correctness or market prices.")
+        st.caption("Each bar shows the predicted probability of a price class. The four probabilities add up to 100%.")
 
 
 def main():
@@ -174,8 +174,7 @@ def main():
         model, schema = load_assets()
     except Exception as exc:
         st.error(f"The model is not ready: {exc}")
-        st.info("Run the submission notebook from top to bottom to recreate artifacts/model.joblib "
-                "and artifacts/schema.json beside app.py, then restart the app.")
+        st.info("Restart the application after updating the saved model and input settings.")
         st.stop()
 
     defaults = default_inputs(schema)
@@ -185,9 +184,8 @@ def main():
         if state_key not in st.session_state:
             st.session_state[state_key] = int(st.session_state.baseline_inputs[feature])
     with st.sidebar:
-        st.subheader("A specification-to-category model")
-        st.write("Classes **0–3** describe relative price ranges in the supplied dataset. "
-                 "They do not correspond to verified currency amounts.")
+        st.subheader("Mobile price prediction")
+        st.write("Price classes: **0 - Low**, **1 - Medium**, **2 - High**, **3 - Very high**.")
         st.markdown("**Selected model**")
         st.write(schema.get("model_name", "Persisted classification pipeline"))
         if "holdout_macro_f1" in schema:
@@ -267,15 +265,15 @@ def main():
             used_ram, used_battery = st.session_state.scenario_values
             st.caption(f"Compared scenario: {used_ram:,} MB RAM and {used_battery:,} mAh battery. "
                        "Press Compare scenarios after further edits.")
-        st.info("This is a predictive association, not a causal experiment. Changing hardware "
-                "does not establish a real-world price change. Some combinations may be uncommon "
-                "in the training data.")
+        st.caption("The comparison changes RAM and battery capacity while keeping the other inputs fixed.")
 
     with batch_tab:
         st.subheader("Score a CSV of phone specifications")
         st.write("Provide the same twenty raw columns. An optional `id` is retained in order; "
                  "known `Unnamed:` export columns are removed. Targets, missing predictors, "
                  "unexpected columns and invalid values are rejected with a clear message.")
+        st.caption("In the downloaded results, price_range is the predicted class. "
+                   "p_0, p_1, p_2 and p_3 are the probabilities of Low, Medium, High and Very high, respectively.")
         template = pd.DataFrame([defaults], columns=schema["feature_order"]).to_csv(index=False)
         st.download_button("Download input template", template, "phone_input_template.csv", "text/csv")
         upload = st.file_uploader("Upload phone specifications", type=["csv"], key="batch_upload",
@@ -293,7 +291,7 @@ def main():
                                    "mobile_price_predictions.csv", "text/csv", key="download_predictions")
 
     with model_tab:
-        st.subheader("Evidence and limits")
+        st.subheader("Model and evaluation")
         metrics = st.columns(3)
         for column, label, key in zip(metrics,
                 ["Development CV macro-F1", "Labeled holdout accuracy", "Labeled holdout macro-F1"],
@@ -310,15 +308,13 @@ def main():
         st.write("The saved pipeline contains the fitted preprocessing and classifier. The application "
                  "uses the same schema, category encoding and engineered features as the notebook. "
                  "No identifier is used as a predictor.")
-        st.warning("The dataset supports an academic classification exercise. Its provenance, "
-                   "currency ranges and relevance to today’s devices are not established. "
-                   "Probability estimates are not a promise of correctness.")
+        st.markdown("**Assumptions used**")
+        st.write("The target is treated as four ordered categories. Recorded zero values are retained. "
+                 "The four Yes/No inputs are encoded as 0/1, and weight categories use one-hot encoding.")
         st.markdown("**Class legend**")
         st.dataframe(pd.DataFrame({"price_range": list(range(4)),
                                   "Relative category": [class_label(schema, i) for i in range(4)]}),
                      hide_index=True, width="stretch")
-        st.caption("Verified local execution is documented in the notebook. A public hosted URL "
-                   "is a separate deployment step and is not implied by this interface.")
 
 
 if __name__ == "__main__":

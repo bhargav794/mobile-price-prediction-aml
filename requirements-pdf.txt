@@ -1,0 +1,4 @@
+# Optional report-export tools; the deployed app uses requirements.txt.
+weasyprint==70.0
+pypdf==7.0.0
+beautifulsoup4==4.15.0

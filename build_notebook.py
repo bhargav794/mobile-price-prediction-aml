@@ -762,6 +762,8 @@ display(Markdown('**Submission check:** replace GROUP_NO/member/student-ID place
     'the final grade and live viva depend on the examiner and the group’s demonstration.'))
 """)
 
+from notebook_editorial import edit_cells
+cells = edit_cells(cells)
 nb = nbf.v4.new_notebook(cells=cells, metadata={
     'kernelspec':{'display_name':'Python 3 (AML environment)','language':'python','name':'python3'},
     'language_info':{'name':'python'},

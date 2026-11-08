@@ -38,13 +38,52 @@ def execute_export(path):
     client.on_cell_start = progress
     client.execute()
     nbformat.write(nb, path)
+    export_executed(nb, path)
+
+
+def export_executed(nb, path):
+    """Render an already executed notebook without rerunning experiments."""
     exporter = HTMLExporter(template_name='lab')
     exporter.embed_images = True
+    exporter.exclude_input = True
+    exporter.exclude_input_prompt = True
+    exporter.exclude_output_prompt = True
     body, _ = exporter.from_notebook_node(nb)
     # nbconvert embeds plots/CSS; remove external MathJax/CDN script dependencies.
     import re
     body = re.sub(r'<script\b[^>]*\bsrc=["\']https?://[^>]*>\s*</script>', '', body, flags=re.I)
-    html = path.with_suffix('.html')
+    from bs4 import BeautifulSoup
+    soup = BeautifulSoup(body, 'html.parser')
+    if soup.title:
+        soup.title.string = 'Mobile Price Prediction'
+    headers = {
+        'model':'Classifier', 'cv_macro_f1':'CV macro-F1', 'cv_macro_f1_std':'F1 std',
+        'cv_accuracy':'CV accuracy', 'cv_accuracy_std':'Accuracy std',
+        'cv_train_macro_f1':'Training F1', 'engineered_areas':'Area features',
+        'feature_variant':'Feature set', 'delta_macro_f1_vs_original':'Change in F1',
+        'mean_added_rows_per_training_fold':'Added rows/fold', 'strategy':'Method',
+        'grid_candidates':'Candidates', 'best_parameters':'Selected parameters',
+        'raw_feature':'Predictor', 'macro_f1_drop':'F1 decrease', 'repeat_std':'Shuffle std',
+        'encoded_feature':'Encoded predictor', 'impurity_importance':'Tree importance',
+        'unique_values':'Distinct values', 'null_count':'Missing', 'dtype':'Type',
+        'macro_precision':'Macro precision', 'macro_recall':'Macro recall', 'macro_f1':'Macro-F1',
+        'weighted_precision':'Weighted precision', 'weighted_recall':'Weighted recall',
+        'weighted_f1':'Weighted F1', 'feature':'Predictor', 'retained':'Retained',
+        'log_loss':'Log loss', 'multiclass_Brier_sum':'Brier score',
+        'mean_max_probability':'Mean max probability',
+        'predict_vs_proba_argmax_disagreements':'Decision disagreements',
+        'mean_probability':'Mean probability', 'empirical_accuracy':'Observed accuracy',
+    }
+    for header in soup.find_all('th'):
+        value = header.get_text(strip=True)
+        if value in headers:
+            header.string = headers[value]
+    for anchor in soup.select('.anchor-link'):
+        anchor.decompose()
+    body = str(soup)
+    html_folder = ROOT / 'output/html'
+    html_folder.mkdir(parents=True, exist_ok=True)
+    html = html_folder / path.with_suffix('.html').name
     html.write_text(body, encoding='utf-8')
     codes = [c for c in nb.cells if c.cell_type == 'code']
     errors = [o for c in codes for o in c.get('outputs', []) if o.output_type == 'error']

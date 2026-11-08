@@ -1,0 +1,36 @@
+{
+  "submission_files": {
+    "GROUP_NO.ipynb": {
+      "bytes": 1909667,
+      "sha256": "d1cc2445c6dc87fd012b8df5db7d59ce40604c902ed2e66022f24d60f1c15e5a"
+    },
+    "GROUP_NO.pdf": {
+      "bytes": 1262297,
+      "sha256": "0a85fa5445f7e3e058ffc549575820821afe3708b43d5baafbef233a8914efbc"
+    }
+  },
+  "html_review_copy": "output/html/GROUP_NO.html",
+  "notebook_code_cells_executed": 24,
+  "error_outputs": 0,
+  "warning_outputs": 0,
+  "pdf_pages": 21,
+  "figures_preserved": 10,
+  "embedded_sources_match": [
+    "requirements.txt",
+    "mobile_pipeline.py",
+    "model_experiments.py",
+    "app.py",
+    ".streamlit/config.toml",
+    "tests/test_app.py",
+    "tests/test_project.py"
+  ],
+  "app_link_on_first_page": true,
+  "grading_and_unrelated_language_removed": true,
+  "documentation_links_removed": true,
+  "visual_pdf_review": "All pages reviewed; dense charts checked at full size",
+  "model_and_metrics_preserved": true,
+  "holdout_accuracy": 0.98,
+  "holdout_macro_f1": 0.9800490049004902,
+  "app_checks": "15 tests and 9 subtests passed",
+  "remaining_student_metadata": "Group number, member names and student IDs"
+}

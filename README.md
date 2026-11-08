@@ -1,93 +1,68 @@
-# Mobile Price Prediction — completed assignment
+# Mobile Price Prediction
 
-The authoritative PDF rubric is covered in nine ordered notebook sections. The only Taxila upload files are:
+Applied Machine Learning assignment using the supplied Mobile Price Prediction datasets.
 
-- `submission/GROUP_NO.ipynb` — fully executed notebook, including readable app/module/test source regeneration.
-- `submission/GROUP_NO.html` — offline HTML export with the same outputs.
+**Deployed application:** https://mobile-price-prediction-aml.streamlit.app/
 
-Do not zip these files or upload any other project artifact to Taxila. The group number and member/student-ID details remain conspicuous placeholders at your request. Replace them in the notebook title and first code cell, rerun/export, and rename both files to the genuine group number before submission. Grading and the live viva remain the examiner's decision.
+## Report
 
-## Verified results
+The two submission files are:
 
-Logistic Regression (`C=100`, original predictors, no engineered areas) was selected using five-fold stratified development CV macro-F1. The seed-42 split contains 1,600 development rows and 400 holdout rows, with 100 holdout phones per class.
+- [Executed notebook](submission/GROUP_NO.ipynb): preprocessing, exploration, training, evaluation and the complete application source.
+- [PDF report](submission/GROUP_NO.pdf): explanations, tables and plots from the executed notebook.
 
-| Model | Development CV macro-F1 | Fold std | CV accuracy |
-|---|---:|---:|---:|
-| Logistic Regression | 0.9612 | 0.0127 | 0.9613 |
-| Soft Voting | 0.9443 | 0.0174 | 0.9444 |
-| SVM (RBF) | 0.9156 | 0.0172 | 0.9156 |
-| Random Forest | 0.8917 | 0.0092 | 0.8912 |
-| Decision Tree | 0.8404 | 0.0071 | 0.8400 |
-| Dummy | 0.1000 | 0.0000 | 0.2500 |
+The [HTML review copy](output/html/GROUP_NO.html) contains the same analysis and outputs. It stays outside the submission folder so that only the notebook and PDF are uploaded. Add the group number, member names and student IDs before the final export.
 
-Holdout accuracy is **0.9800** (392/400), macro-F1 **0.980049**, macro precision **0.980196**, macro recall **0.9800**. Weighted metrics equal the corresponding macro metrics because class support is equal. All eight errors are between adjacent classes. Accuracy's Wilson 95% interval is [0.9610, 0.9898]. The strongest raw-feature permutation drivers are RAM, battery capacity and pixel height. These are predictive associations.
+## Results
 
-The complete chosen pipeline was then refitted on all 2,000 labeled rows for deployment. Holdout metrics were measured before that full-data refit. `test_predictions.csv` contains exactly 1,000 `id,price_range` rows in original supplied-test order. The test file has no labels; no accuracy, F1 or confusion matrix is claimed for it.
+| Classifier | Development CV macro-F1 | CV accuracy |
+|---|---:|---:|
+| Logistic Regression | 0.9612 | 0.9613 |
+| Soft Voting | 0.9443 | 0.9444 |
+| RBF SVM | 0.9156 | 0.9156 |
+| Random Forest | 0.8917 | 0.8913 |
+| Decision Tree | 0.8404 | 0.8400 |
+| Dummy Classifier | 0.1000 | 0.2500 |
 
-Area-feature ablation improved LR macro-F1 by only 0.000639, below the predeclared 0.002 retention threshold; it reduced SVM macro-F1. Neither area variant was retained. No balancing, balanced weights and fold-local RandomOverSampler gave identical scores: every training fold already has 320 examples per class, so weights are 1 and oversampling adds zero rows.
+Five-fold stratified cross-validation uses 1,600 development rows, with 400 labeled rows held out for evaluation. Logistic Regression (`C=100`) is selected by CV macro-F1. Its holdout accuracy is 0.9800, macro precision 0.9802, macro recall 0.9800 and macro-F1 0.9800. All eight errors are between adjacent price classes.
 
-## Run the verified local app
+The chosen pipeline is then refitted on all 2,000 labeled rows. It predicts the 1,000 supplied test rows while retaining their IDs and original row order. The test data has no labels, so its output is used for prediction only.
 
-From this project directory:
-
-```bash
-source .venv/bin/activate
-streamlit run app.py
-```
-
-Or use `.venv/bin/python -m streamlit run app.py`. The application loads paths relative to `app.py`, so an absolute app path also works from another directory. The temporary verification server has been stopped; run the command to start your demonstration.
-
-1. Adjust the grouped specifications and click **Predict price category**.
-2. Inspect the relative 0–3 category and genuine probability bars.
-3. Open **What-if simulator**, alter RAM/battery and click **Compare scenarios**.
-4. Open **Batch CSV**, upload the original test CSV, and download ordered predictions.
-
-The app validates all twenty raw predictors, retains optional opaque IDs, strips known Unnamed export columns, and rejects invalid categories, missing fields and malformed numbers. It supports recorded zeros. The scenario is predictive, not causal; there are no invented rupee amounts.
-
-## Reproduce
-
-Verified interpreter: Python 3.14.8 on Linux. Direct versions are pinned in `requirements.txt`; the complete environment is recorded in `requirements-lock.txt`. All originals remain unchanged and SHA-256 fingerprints are recorded in `reports/reproducibility.json`.
+## Run locally
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-python -m pip install -r requirements-lock.txt
-python run_notebook.py
+python -m pip install -r requirements.txt
+streamlit run app.py
 ```
 
-On this machine PyPI's file host timed out; installation succeeded using the Tsinghua PyPI mirror. The requirements are ordinary package/version pins, with no mirror hard-coded. Use your normal trusted package index when reproducing.
+The saved pipeline and input settings are in [artifacts/](artifacts/). Dependencies are pinned in [requirements.txt](requirements.txt); the original execution environment is also recorded in [requirements-lock.txt](requirements-lock.txt).
 
-`run_notebook.py` starts a clean kernel with the active interpreter, executes the entire notebook, and exports HTML with embedded images/styles. It accepts another filename, for example:
+The app provides a single-phone form, class probabilities, batch CSV prediction and a RAM/battery what-if comparison. In downloaded results, `price_range` is the predicted class and `p_0` to `p_3` are probabilities for Low, Medium, High and Very high.
+
+## Regenerate the report
+
+Keep the original supplied CSVs in the project directory. The notebook contains the implementation needed to regenerate preprocessing, experiments and the app.
 
 ```bash
-python run_notebook.py submission/42.ipynb
+source .venv/bin/activate
+python run_notebook.py
+python -m pip install -r requirements-pdf.txt
+python export_pdf.py
 ```
 
-`build_notebook.py` is a developer convenience for rebuilding the original placeholder notebook from local sources; it will overwrite notebook edits, so do not use it after customizing your group metadata. The submitted notebook itself contains all indispensable source for model/app/schema/test regeneration. To rerun from only the academic submission, place the original two CSVs alongside a working copy, install the listed dependencies, and run the notebook. The original supplied CSVs are required inputs and are not additional Taxila uploads.
+[run_notebook.py](run_notebook.py) starts a clean kernel and exports the executed analysis to HTML. [export_pdf.py](export_pdf.py) converts that HTML into a paginated PDF, using landscape pages for the dense charts. The notebook contains all code; the HTML and PDF focus on explanations and executed outputs.
 
-Checks can also be run explicitly:
+For source-driven notebook edits, update [notebook_editorial.py](notebook_editorial.py), then run [build_notebook.py](build_notebook.py) before the execution/export commands. Rebuilding replaces manual notebook edits, so preserve any group details entered directly in the notebook.
+
+## Checks
 
 ```bash
 python -m pytest -q tests
 python verify_app_server.py
 ```
 
-Verified: 15 tests and 9 subtests passed; single-phone and what-if forms executed through Streamlit AppTest; batch/persistence/schema checks passed; all test rows scored; actual Streamlit HTTP health and page returned 200 from a different working directory. AppTest tests application behavior, not visual browser rendering of the app. The HTML title page and representative figures were visually inspected. All 25 notebook code cells have consecutive execution counts and no error/warning outputs; ten figure outputs and 37 HTML table/style outputs are embedded.
+Tests cover the input schema, class labels, saved-pipeline reloads, probability totals, batch order, invalid inputs, and Streamlit's prediction/what-if forms. The report revision passed 15 tests and 9 subtests.
 
-## Evidence and supporting artifacts
-
-- `RUBRIC_AUDIT.md` and `reports/rubric_compliance.csv`: all nine criteria / 30 marks mapped to evidence.
-- `reports/results.json`: metrics, confusion matrix, per-class report and methodology.
-- `reports/execution_audit.json`: clean execution and export audit.
-- `reports/app_verification.json`, `reports/server_verification.json`: actual app checks.
-- `artifacts/model.joblib`, `artifacts/schema.json`: complete deployment pipeline and input schema.
-- `artifacts/development_models.joblib`: development-fitted models, distinct from the full-data deployment model.
-- `app.py`, `mobile_pipeline.py`, `model_experiments.py`, `tests/`: readable tested implementation.
-- `test_predictions.csv`: supplied unlabeled test predictions; local artifact only.
-- `reports/notebook_preview.png`, `reports/figures/`: local presentation-check artifacts.
-
-## Public hosting and limitations
-
-No public Streamlit URL was created or claimed. To publish, use your own authorized repository/account: put `app.py`, `mobile_pipeline.py`, `requirements.txt`, `.streamlit/config.toml`, `artifacts/model.joblib` and `artifacts/schema.json` in the repository; in Streamlit Community Cloud choose that repository/branch and `app.py`, select a Python runtime compatible with the pinned packages, and deploy. Verify the returned URL using single and batch inference. Public-cloud runtime compatibility has not been tested. Official guide: https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/deploy
-
-Other limits: one supplied dataset and split, undocumented sampling provenance and zero-dimension semantics, coarse weight categories, selection optimism in non-nested development CV, no external/current-market validation, and no known currency boundaries. The notebook includes 12 viva questions and a timed 2–3 minute demo narrative. Avoid changing model choices based on the already-used holdout and presenting that as a fresh unbiased evaluation.
+The deployed app follows the `main` branch. After testing changes, commit and push the app source to update the deployment. Changes to group details and report wording do not require retraining a different model configuration.
