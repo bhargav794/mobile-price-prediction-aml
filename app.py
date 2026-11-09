@@ -195,8 +195,8 @@ def main():
         st.caption("Start with the training medians and common categories; adjust specifications, "
                    "predict, then explore RAM and battery changes in What-if.")
 
-    single_tab, whatif_tab, batch_tab, model_tab = st.tabs(
-        ["Single phone", "What-if simulator", "Batch CSV", "Model card"]
+    single_tab, whatif_tab, batch_tab, model_tab, about_tab = st.tabs(
+        ["Single phone", "What-if simulator", "Batch CSV", "Model card", "About"]
     )
     with single_tab:
         st.subheader("Build a phone profile")
@@ -315,6 +315,25 @@ def main():
         st.dataframe(pd.DataFrame({"price_range": list(range(4)),
                                   "Relative category": [class_label(schema, i) for i in range(4)]}),
                      hide_index=True, width="stretch")
+
+    with about_tab:
+        st.subheader("Group 2")
+        members = pd.DataFrame([
+            {"Student name": "Jannatul Firdousi", "BITS ID": "2025NS04069"},
+            {"Student name": "Dyutik Chaudhary Suryadevara", "BITS ID": "2025NS04090"},
+            {"Student name": "YUVARAJ S S", "BITS ID": "2025NS04059"},
+            {"Student name": "KOTHAPALLI BHARGAVA AVINASH", "BITS ID": "2025NS04077"},
+        ]).sort_values("BITS ID", ignore_index=True)
+        st.dataframe(members, hide_index=True, width="stretch")
+
+        st.subheader("App sections")
+        st.dataframe(pd.DataFrame([
+            {"Section": "Single phone", "Purpose": "Predict one phone's price class and class probabilities."},
+            {"Section": "What-if simulator", "Purpose": "Compare predictions after changing RAM and battery capacity."},
+            {"Section": "Batch CSV", "Purpose": "Upload specifications for multiple phones and download predictions."},
+            {"Section": "Model card", "Purpose": "View the selected model, evaluation scores, assumptions and class labels."},
+            {"Section": "About", "Purpose": "View group members and this guide to the app."},
+        ]), hide_index=True, width="stretch")
 
 
 if __name__ == "__main__":
