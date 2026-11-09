@@ -105,7 +105,7 @@ def split_wide_tables(soup):
 
 
 def main():
-    source = ROOT / 'output/html/GROUP_NO.html'
+    source = ROOT / 'output/html/2.html'
     soup = BeautifulSoup(source.read_text(), 'html.parser')
     if soup.title:
         soup.title.string = 'Mobile Price Prediction'
@@ -158,7 +158,7 @@ def main():
     text = str(soup)
     # DejaVu fonts handle the technical symbols; normalize typographic hyphens.
     text = text.replace('\u2011','-').replace('\u2013','-').replace('\u2014','-')
-    output = ROOT / 'submission/GROUP_NO.pdf'
+    output = ROOT / 'submission/2.pdf'
     HTML(string=text, base_url=str(source.parent)).write_pdf(
         output, stylesheets=[CSS(string=PRINT_STYLE)], font_config=FontConfiguration())
     reader = PdfReader(output)
@@ -169,7 +169,7 @@ def main():
     assert len(reader.pages) >= 10
     print(f'Created {output.name}: {len(reader.pages)} pages, {output.stat().st_size:,} bytes')
     # Keep the print HTML for repeatable layout inspection, outside submission.
-    (ROOT / 'output/html/GROUP_NO.print.html').write_text(text)
+    (ROOT / 'output/html/2.print.html').write_text(text)
 
 
 if __name__ == '__main__':

@@ -768,7 +768,7 @@ nb = nbf.v4.new_notebook(cells=cells, metadata={
     'kernelspec':{'display_name':'Python 3 (AML environment)','language':'python','name':'python3'},
     'language_info':{'name':'python'},
 })
-out = ROOT / 'submission/GROUP_NO.ipynb'
+out = ROOT / 'submission/2.ipynb'
 out.parent.mkdir(exist_ok=True)
 nbf.write(nb,out)
 print(f'Created {out}: {len(cells)} cells')

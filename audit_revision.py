@@ -13,9 +13,9 @@ APP = 'https://mobile-price-prediction-aml.streamlit.app/'
 
 
 def main():
-    notebook = ROOT / 'submission/GROUP_NO.ipynb'
+    notebook = ROOT / 'submission/2.ipynb'
     pdf_path = notebook.with_suffix('.pdf')
-    html_path = ROOT / 'output/html/GROUP_NO.html'
+    html_path = ROOT / 'output/html/2.html'
     nb = nbformat.read(notebook, as_version=4)
     nbformat.validate(nb)
     code_cells = [c for c in nb.cells if c.cell_type == 'code']
@@ -66,7 +66,12 @@ def main():
     assert not banned.search(app)
     assert 'Model and evaluation' in app and 'p_0, p_1, p_2 and p_3' in app
     assert json.loads((ROOT/'reports/app_verification.json').read_text())['pytest_returncode'] == 0
-    assert sorted(p.name for p in (ROOT/'submission').iterdir()) == ['GROUP_NO.ipynb','GROUP_NO.pdf']
+    assert sorted(p.name for p in (ROOT/'submission').iterdir()) == ['2.ipynb','2.pdf']
+    from notebook_editorial import MEMBERS
+    for name, student_id in MEMBERS:
+        assert name in nb.cells[0].source and student_id in nb.cells[0].source
+        assert name in (pdf.pages[0].extract_text() or '')
+        assert student_id in (pdf.pages[0].extract_text() or '')
     summary = {
         'submission_files':{p.name:{'bytes':p.stat().st_size,
             'sha256':hashlib.sha256(p.read_bytes()).hexdigest()}
@@ -79,7 +84,9 @@ def main():
         'model_and_metrics_preserved':True,'holdout_accuracy':.98,
         'holdout_macro_f1':result['holdout_metrics']['macro_f1'],
         'app_checks':'15 tests and 9 subtests passed',
-        'remaining_student_metadata':'Group number, member names and student IDs',
+        'group_number':'2',
+        'members':[{'name':name,'student_id':student_id} for name, student_id in MEMBERS],
+        'remaining_student_metadata':None,
     }
     for name in ['editorial_review.json','final_acceptance.json']:
         (ROOT/'reports'/name).write_text(json.dumps(summary,indent=2))

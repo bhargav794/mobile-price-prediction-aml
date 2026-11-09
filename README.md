@@ -2,16 +2,25 @@
 
 Applied Machine Learning assignment using the supplied Mobile Price Prediction datasets.
 
+**Group 2**
+
+| Member | BITS ID |
+|---|---|
+| Jannatul Firdousi | 2025NS04069 |
+| Dyutik Chaudhary Suryadevara | 2025NS04090 |
+| YUVARAJ S S | 2025NS04059 |
+| KOTHAPALLI BHARGAVA AVINASH | 2025NS04077 |
+
 **Deployed application:** https://mobile-price-prediction-aml.streamlit.app/
 
 ## Report
 
 The two submission files are:
 
-- [Executed notebook](submission/GROUP_NO.ipynb): preprocessing, exploration, training, evaluation and the complete application source.
-- [PDF report](submission/GROUP_NO.pdf): explanations, tables and plots from the executed notebook.
+- [Executed notebook](submission/2.ipynb): preprocessing, exploration, training, evaluation and the complete application source.
+- [PDF report](submission/2.pdf): explanations, tables and plots from the executed notebook.
 
-The [HTML review copy](output/html/GROUP_NO.html) contains the same analysis and outputs. It stays outside the submission folder so that only the notebook and PDF are uploaded. Add the group number, member names and student IDs before the final export.
+The [HTML review copy](output/html/2.html) contains the same analysis and outputs. It stays outside the submission folder so that only the notebook and PDF are uploaded.
 
 ## Results
 

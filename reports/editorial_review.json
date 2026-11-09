@@ -1,15 +1,15 @@
 {
   "submission_files": {
-    "GROUP_NO.ipynb": {
-      "bytes": 1909667,
-      "sha256": "d1cc2445c6dc87fd012b8df5db7d59ce40604c902ed2e66022f24d60f1c15e5a"
+    "2.ipynb": {
+      "bytes": 1909884,
+      "sha256": "177f68909506c307f9c30cba3e74ed996b007b93679e941800014fcc97adc295"
     },
-    "GROUP_NO.pdf": {
-      "bytes": 1262297,
-      "sha256": "0a85fa5445f7e3e058ffc549575820821afe3708b43d5baafbef233a8914efbc"
+    "2.pdf": {
+      "bytes": 1262521,
+      "sha256": "7b0714789bfc9c881bf374955baf11262e1fa397049bc2d780936d33cb8b3f21"
     }
   },
-  "html_review_copy": "output/html/GROUP_NO.html",
+  "html_review_copy": "output/html/2.html",
   "notebook_code_cells_executed": 24,
   "error_outputs": 0,
   "warning_outputs": 0,
@@ -32,5 +32,24 @@
   "holdout_accuracy": 0.98,
   "holdout_macro_f1": 0.9800490049004902,
   "app_checks": "15 tests and 9 subtests passed",
-  "remaining_student_metadata": "Group number, member names and student IDs"
+  "group_number": "2",
+  "members": [
+    {
+      "name": "Jannatul Firdousi",
+      "student_id": "2025NS04069"
+    },
+    {
+      "name": "Dyutik Chaudhary Suryadevara",
+      "student_id": "2025NS04090"
+    },
+    {
+      "name": "YUVARAJ S S",
+      "student_id": "2025NS04059"
+    },
+    {
+      "name": "KOTHAPALLI BHARGAVA AVINASH",
+      "student_id": "2025NS04077"
+    }
+  ],
+  "remaining_student_metadata": null
 }

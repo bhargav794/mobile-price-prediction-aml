@@ -3,14 +3,22 @@ import re
 import textwrap
 
 APP_URL = 'https://mobile-price-prediction-aml.streamlit.app/'
+GROUP_NUMBER = '2'
+MEMBERS = [
+    ('Jannatul Firdousi', '2025NS04069'),
+    ('Dyutik Chaudhary Suryadevara', '2025NS04090'),
+    ('YUVARAJ S S', '2025NS04059'),
+    ('KOTHAPALLI BHARGAVA AVINASH', '2025NS04077'),
+]
+MEMBER_ROWS = '<br>'.join(f'{name} - {student_id}' for name, student_id in MEMBERS)
 
 NARRATIVE = {
-0: '''
+0: f'''
 <div class="assignment-cover" style="background:#122840;color:#fff;padding:28px;border-radius:12px">
 <p style="color:#6ee7cf;letter-spacing:1px">BITS PILANI - WORK INTEGRATED LEARNING PROGRAMMES</p>
 <h1 style="color:white">Mobile Price Prediction</h1>
 <p>Applied Machine Learning | S1-26_DSEZG568</p>
-<p>Group: GROUP_NO<br>Members and student IDs: [Add group details]</p>
+<p>Group: {GROUP_NUMBER}<br>Members and student IDs:<br>{MEMBER_ROWS}</p>
 <p><a style="color:#6ee7cf" href="https://mobile-price-prediction-aml.streamlit.app/">Open the Streamlit application</a><br>
 <span style="font-size:12px">https://mobile-price-prediction-aml.streamlit.app/</span></p>
 </div>
@@ -246,9 +254,10 @@ def edit_cells(cells):
         cells[i].source = tidy(text)
     cells[2].source = cells[2].source.replace(
         "GROUP_NO = 'GROUP_NO'  # REQUIRED: replace with your genuine group number",
-        "GROUP_NO = 'GROUP_NO'  # Add the group number")
-    cells[2].source = cells[2].source.replace("['REPLACE: member name(s)']", "['Add member names']").replace(
-        "['REPLACE: student ID(s)']", "['Add student IDs']")
+        f"GROUP_NO = {GROUP_NUMBER!r}")
+    cells[2].source = cells[2].source.replace(
+        "['REPLACE: member name(s)']", repr([name for name, _ in MEMBERS])).replace(
+        "['REPLACE: student ID(s)']", repr([student_id for _, student_id in MEMBERS]))
     cells[2].source = cells[2].source.replace(
         "display(pd.DataFrame({'group':[GROUP_NO], 'members':[', '.join(MEMBER_NAMES)], 'details':[str(GROUP_DETAILS)]}))", '')
     # Source cells remain executable and contain all implementation details.

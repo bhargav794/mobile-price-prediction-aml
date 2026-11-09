@@ -102,7 +102,7 @@ def export_executed(nb, path):
 if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('notebook', nargs='?', default='submission/GROUP_NO.ipynb')
+    parser.add_argument('notebook', nargs='?', default='submission/2.ipynb')
     args = parser.parse_args()
     path = Path(args.notebook)
     execute_export(path.resolve() if path.is_absolute() else ROOT / path)

@@ -13,5 +13,6 @@ reports/server_smoke.log
 reports/revision_backups/
 tmp/
 output/html/*.print.html
+output/archives/
 
 
