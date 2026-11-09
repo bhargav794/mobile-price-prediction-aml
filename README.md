@@ -6,10 +6,10 @@ Applied Machine Learning assignment using the supplied Mobile Price Prediction d
 
 | Member | BITS ID |
 |---|---|
-| Jannatul Firdousi | 2025NS04069 |
-| Dyutik Chaudhary Suryadevara | 2025NS04090 |
 | YUVARAJ S S | 2025NS04059 |
+| Jannatul Firdousi | 2025NS04069 |
 | KOTHAPALLI BHARGAVA AVINASH | 2025NS04077 |
+| Dyutik Chaudhary Suryadevara | 2025NS04090 |
 
 **Deployed application:** https://mobile-price-prediction-aml.streamlit.app/
 

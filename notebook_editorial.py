@@ -5,10 +5,10 @@ import textwrap
 APP_URL = 'https://mobile-price-prediction-aml.streamlit.app/'
 GROUP_NUMBER = '2'
 MEMBERS = [
-    ('Jannatul Firdousi', '2025NS04069'),
-    ('Dyutik Chaudhary Suryadevara', '2025NS04090'),
     ('YUVARAJ S S', '2025NS04059'),
+    ('Jannatul Firdousi', '2025NS04069'),
     ('KOTHAPALLI BHARGAVA AVINASH', '2025NS04077'),
+    ('Dyutik Chaudhary Suryadevara', '2025NS04090'),
 ]
 MEMBER_ROWS = '<br>'.join(f'{name} - {student_id}' for name, student_id in MEMBERS)
 

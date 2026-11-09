@@ -68,6 +68,10 @@ def main():
     assert json.loads((ROOT/'reports/app_verification.json').read_text())['pytest_returncode'] == 0
     assert sorted(p.name for p in (ROOT/'submission').iterdir()) == ['2.ipynb','2.pdf']
     from notebook_editorial import MEMBERS
+    assert [student_id for _, student_id in MEMBERS] == sorted(student_id for _, student_id in MEMBERS)
+    for content in [nb.cells[0].source, soup.get_text(), pdf.pages[0].extract_text() or '', (ROOT/'README.md').read_text()]:
+        positions = [content.index(student_id) for _, student_id in MEMBERS]
+        assert positions == sorted(positions), 'Member IDs are not in ascending order'
     for name, student_id in MEMBERS:
         assert name in nb.cells[0].source and student_id in nb.cells[0].source
         assert name in (pdf.pages[0].extract_text() or '')

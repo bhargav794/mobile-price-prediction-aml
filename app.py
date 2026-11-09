@@ -319,10 +319,10 @@ def main():
     with about_tab:
         st.subheader("Group 2")
         members = pd.DataFrame([
-            {"Student name": "Jannatul Firdousi", "BITS ID": "2025NS04069"},
-            {"Student name": "Dyutik Chaudhary Suryadevara", "BITS ID": "2025NS04090"},
             {"Student name": "YUVARAJ S S", "BITS ID": "2025NS04059"},
+            {"Student name": "Jannatul Firdousi", "BITS ID": "2025NS04069"},
             {"Student name": "KOTHAPALLI BHARGAVA AVINASH", "BITS ID": "2025NS04077"},
+            {"Student name": "Dyutik Chaudhary Suryadevara", "BITS ID": "2025NS04090"},
         ]).sort_values("BITS ID", ignore_index=True)
         st.dataframe(members, hide_index=True, width="stretch")
 
